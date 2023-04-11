@@ -65,4 +65,36 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <defaultGoal>clean install</defaultGoal>
+        <finalName>${project.name}</finalName>
+        <plugins>
+            <!-- 生成一个包含所有依赖库的、可独立运行的jar包 -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.bus.businessdiaryapp.BusinessDiaryAppApplication</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>true</executable>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
